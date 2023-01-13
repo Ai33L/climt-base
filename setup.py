@@ -110,8 +110,8 @@ if 'FC' not in os.environ:
 
 if 'CC' not in os.environ:
     if operating_system == 'Darwin':
-        # guess_compiler_name('CC')
-        os.environ['CC'] = 'gcc-6'
+        guess_compiler_name('CC')
+        # os.environ['CC'] = 'gcc-6'
     else:
         os.environ['CC'] = 'gcc'
 
