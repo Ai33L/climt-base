@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, macos-10.15]
+        os: [ubuntu-18.04]
         python-version: [py37, py38, py39, py310]
     steps:
     - uses: actions/checkout@v2
@@ -52,11 +52,9 @@ jobs:
       run: |
             if [ "$RUNNER_OS" == "Linux" ]; then
               gfortran --version
-              CC=gcc-7
-              FC=gfortran-7
-              CLIMT_ARCH=Linux tox -e ${{ matrix.python-version }}
+              CC=gcc-7 FC=gfortran-7 CLIMT_ARCH=Linux tox -e ${{ matrix.python-version }}
             elif [ "$RUNNER_OS" == "macOS" ]; then
-              CLIMT_ARCH=Darwin tox -e ${{ matrix.python-version }}
+              CC=gcc-8 FC=gfortran-8 CLIMT_ARCH=Darwin tox -e ${{ matrix.python-version }}
             else 
               echo "$RUNNER_OS not supported"
               exit 1
