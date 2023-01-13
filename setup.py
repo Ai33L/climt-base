@@ -94,7 +94,6 @@ compiled_path = os.path.join(dir_path, compiled_base_dir)
 lib_path_list = [os.path.join(compiled_path, operating_system+'/')]
 inc_path = os.path.join(compiled_path, 'include')
 include_dirs.append(inc_path)
-openblas_path = lib_path_list[0]+'/libopenblas.a'
 
 
 # Compile libraries
@@ -123,7 +122,6 @@ if operating_system == 'Windows':
     os.environ['FC'] = 'gfortran.exe'
     os.environ['AR'] = 'gcc-ar.exe'
     libraries = []
-    openblas_path = os.path.join(os.environ['COMPILER_PATH'], '../lib/libopenblas.a')
     default_link_args = ['-l:libgfortran.a', '-l:libquadmath.a', '-l:libm.a']
     default_compile_args = ['-DMS_WIN64']
 
