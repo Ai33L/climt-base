@@ -1,0 +1,70 @@
+version: 0.9.1.{build}
+
+environment:
+  matrix:
+    - PYTHON_VERSION: "3.6"
+      MINICONDA: "C:\\Miniconda36-x64"
+    - PYTHON_VERSION: "3.7"
+      MINICONDA: "C:\\Miniconda37-x64"
+
+platform:
+  - x64
+
+matrix:
+  fast_finish: true
+
+cache:
+  - C:\projects\climt\climt\_lib\Windows -> .appveyor.yml
+  - C:\Users\appveyor\AppData\Local\pip\ -> requirements_dev.txt
+
+install:
+  - set PYTHON_NAME=python%PYTHON_VERSION%
+  - set COMPILER_PATH=%MINICONDA%\\envs\\%PYTHON_NAME%\\Library\\mingw-w64\\bin\\
+  - set PATH=%COMPILER_PATH%;C:\msys64\usr\bin\;%MINICONDA%\Scripts;%PATH%
+  - conda config --set always_yes yes --set changeps1 no
+  - conda create -q --name %PYTHON_NAME% python=%PYTHON_VERSION%
+  - activate %PYTHON_NAME%
+#  - conda update -q conda
+  - conda install -c msys2 m2w64-gcc m2w64-gcc-fortran m2w64-winpthreads-git m2w64-openblas
+  - bash -c "which x86_64-w64-mingw32-gcc.exe"
+  - bash -c "ls -l $COMPILER_PATH"
+  - bash -c "echo $PATH"
+  - bash -c "printf '[build]\r\ncompiler=mingw32\r\n' > $HOME/pydistutils.cfg"
+  - bash -c "ls $HOME; cat $HOME/pydistutils.cfg"
+  - bash -c "gcc --version"
+  - bash -c "gfortran --version"
+  - bash -c "x86_64-w64-mingw32-gfortran.exe --version"
+  - bash -c "x86_64-w64-mingw32-gcc.exe --version"
+  - bash -c "which make"
+  - bash -c "ls -l /c/projects/climt/climt/_lib/Windows"
+  - bash -c "cp $COMPILER_PATH/x86_64-w64-mingw32-gcc-ar.exe $COMPILER_PATH/x86_64-w64-mingw32-ar.exe"
+  - conda install numpy==1.15.2 scipy>=0.18.1 cython>=0.25
+  - conda install pandas
+  - conda install libpython
+  - python -m pip install -r requirements_dev.txt
+  - conda upgrade pip setuptools wheel
+# - set COMPILER_PATH=C:\\msys64\\mingw64\\bin\\
+
+build_script:
+  - bash -c "cd /c/projects/climt/; python setup.py develop"
+#  - bash -c "cd /c/projects/climt/; python setup.py build --compiler=mingw32"
+
+test_script:
+#  - conda install pytest
+  - bash -c "cd /c/projects/climt; py.test -v"
+# - bash -c "cd /c/projects/climt; find . |grep _components"
+
+after_test:
+  # This step builds your wheels.
+  - python.exe setup.py bdist_wheel
+
+# artifacts:
+  # bdist_wheel puts your built wheel in the dist directory
+  #  - path: dist\*.whl
+
+on_success:
+#  You can use this step to upload your artifacts to a public website.
+#  See Appveyor's documentation for more details. Or you can simply
+#  access your wheels from the Appveyor "artifacts" tab for your build.
+  - python -m pip install -U twine
+  - bash -c "cd /c/projects/climt; if [[ $APPVEYOR_REPO_TAG == true ]]; then python -m twine upload  dist/*.whl; fi"
