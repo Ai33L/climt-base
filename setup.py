@@ -33,8 +33,8 @@ include_dirs = [np.get_include()]
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
+# with open('HISTORY.rst') as history_file:
+#     history = history_file.read()
 
 requirements = [
     'numpy>=1.16.0',
@@ -237,7 +237,7 @@ setup(
     name='climt',
     version='0.16.14',
     description='CliMT is a Toolkit for building Earth system models in Python.',
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     author="Rodrigo Caballero",
     author_email='rodrigo.caballero@misu.su.se',
     url='https://github.com/CliMT/climt',
