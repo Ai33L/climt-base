@@ -14,30 +14,30 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, macos-10.15]
-        python-version: [py37, py38, py39, py310]
+        os: [macos-10.15]
+        python-version: [py36]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 37
-      if: ${{ matrix.python-version == 'py37' }}
+    - name: Set up Python 36
+      if: ${{ matrix.python-version == 'py36' }}
       uses: actions/setup-python@v2
       with:
-        python-version: "3.7"
-    - name: Set up Python 38
-      if: ${{ matrix.python-version == 'py38' }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.8"
-    - name: Set up Python 39
-      if: ${{ matrix.python-version == 'py39' }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.9"
-    - name: Set up Python 310
-      if: ${{ matrix.python-version == 'py310' }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.10"
+        python-version: "3.6"
+    # - name: Set up Python 38
+    #   if: ${{ matrix.python-version == 'py38' }}
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: "3.8"
+    # - name: Set up Python 39
+    #   if: ${{ matrix.python-version == 'py39' }}
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: "3.9"
+    # - name: Set up Python 310
+    #   if: ${{ matrix.python-version == 'py310' }}
+    #   uses: actions/setup-python@v2
+    #   with:
+    #     python-version: "3.10"
 
     - name: Install dependencies
       run: |
