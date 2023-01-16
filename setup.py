@@ -99,13 +99,13 @@ include_dirs.append(inc_path)
 # Compile libraries
 
 if 'FC' not in os.environ:
-    if operating_system == 'Darwin':
-        # guess_compiler_name('FC')
-        os.environ['FC'] = 'gfortran-6'
-        os.environ['F77'] = 'gfortran-6'
-    else:
-        os.environ['FC'] = 'gfortran'
-        os.environ['F77'] = 'gfortran'
+    # if operating_system == 'Darwin':
+    #     # guess_compiler_name('FC')
+    #     os.environ['FC'] = 'gfortran-6'
+    #     os.environ['F77'] = 'gfortran-6'
+    # else:
+    os.environ['FC'] = 'gfortran'
+    os.environ['F77'] = 'gfortran'
 
 if 'CC' not in os.environ:
     # if operating_system == 'Darwin':
