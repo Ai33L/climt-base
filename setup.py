@@ -53,7 +53,7 @@ test_requirements = [
 
 # Find first gcc directory
 def find_homebrew_gcc():
-    return glob.glob('/usr/bin/gcc*')[0]
+    return glob.glob('/usr/local/Cellar/gcc*')[0]
 
 
 # Platform specific settings
@@ -99,20 +99,20 @@ include_dirs.append(inc_path)
 # Compile libraries
 
 if 'FC' not in os.environ:
-    # if operating_system == 'Darwin':
-    #     # guess_compiler_name('FC')
-    #     os.environ['FC'] = 'gfortran-6'
-    #     os.environ['F77'] = 'gfortran-6'
-    # else:
-    os.environ['FC'] = 'gfortran'
-    os.environ['F77'] = 'gfortran'
+    if operating_system == 'Darwin':
+        # guess_compiler_name('FC')
+        os.environ['FC'] = 'gfortran-6'
+        os.environ['F77'] = 'gfortran-6'
+    else:
+        os.environ['FC'] = 'gfortran'
+        os.environ['F77'] = 'gfortran'
 
 if 'CC' not in os.environ:
-    # if operating_system == 'Darwin':
-    #     # guess_compiler_name('CC')
-    #     os.environ['CC'] = 'gcc'
-    # else:
-    os.environ['CC'] = 'gcc'
+    if operating_system == 'Darwin':
+        # guess_compiler_name('CC')
+        os.environ['CC'] = 'gcc-6'
+    else:
+        os.environ['CC'] = 'gcc'
 
 if 'CLIMT_OPT_FLAGS' not in os.environ:
     os.environ['CLIMT_OPT_FLAGS'] = '-O3'
