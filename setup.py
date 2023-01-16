@@ -108,11 +108,11 @@ if 'FC' not in os.environ:
         os.environ['F77'] = 'gfortran'
 
 if 'CC' not in os.environ:
-    if operating_system == 'Darwin':
-        # guess_compiler_name('CC')
-        os.environ['CC'] = 'gcc-6'
-    else:
-        os.environ['CC'] = 'gcc'
+    # if operating_system == 'Darwin':
+    #     # guess_compiler_name('CC')
+    #     os.environ['CC'] = 'gcc'
+    # else:
+    os.environ['CC'] = 'gcc'
 
 if 'CLIMT_OPT_FLAGS' not in os.environ:
     os.environ['CLIMT_OPT_FLAGS'] = '-O3'
