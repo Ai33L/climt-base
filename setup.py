@@ -53,7 +53,7 @@ test_requirements = [
 
 # Find first gcc directory
 def find_homebrew_gcc():
-    return glob.glob('/usr/local/Cellar/gcc*')[0]
+    return glob.glob('/usr/bin/gcc*')[0]
 
 
 # Platform specific settings
