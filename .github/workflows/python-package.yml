@@ -15,14 +15,14 @@ jobs:
     strategy:
       matrix:
         os: [macos-10.15]
-        python-version: [py36]
+        python-version: [py37]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 36
-      if: ${{ matrix.python-version == 'py36' }}
+    - name: Set up Python 37
+      if: ${{ matrix.python-version == 'py37' }}
       uses: actions/setup-python@v2
       with:
-        python-version: "3.6"
+        python-version: "3.7"
     # - name: Set up Python 38
     #   if: ${{ matrix.python-version == 'py38' }}
     #   uses: actions/setup-python@v2
