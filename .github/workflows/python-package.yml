@@ -56,7 +56,7 @@ jobs:
             elif [ "$RUNNER_OS" == "macOS" ]; then
               # which gcc #/usr/bin/gcc
               # which gfortran
-              CC=gcc FC=gfortran CLIMT_ARCH=Darwin tox -e ${{ matrix.python-version }}
+              CC=gcc-6 FC=gfortran-6 CLIMT_ARCH=Darwin tox -e ${{ matrix.python-version }}
             else 
               echo "$RUNNER_OS not supported"
               exit 1
