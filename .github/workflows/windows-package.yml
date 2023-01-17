@@ -25,6 +25,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - shell: bash -l {0} 
       run: |
+          print('START')
           export COMPILER_PATH=/c/Miniconda/envs/test/Library/mingw-w64/bin/
           ls /c/Miniconda/envs/test/Library/mingw-w64/bin/* -r
           conda activate test
