@@ -52,7 +52,7 @@ jobs:
       run: |
             if [ "$RUNNER_OS" == "Linux" ]; then
               gfortran --version
-              CC=gcc-7 FC=gfortran-7 CLIMT_ARCH=Linux tox -e ${{ matrix.python-version }}
+              CLIMT_ARCH=Linux tox -e ${{ matrix.python-version }}
             elif [ "$RUNNER_OS" == "macOS" ]; then
               # which gcc #/usr/bin/gcc
               # which gfortran
