@@ -53,7 +53,7 @@ test_requirements = [
 
 # Find first gcc directory
 def find_homebrew_gcc():
-    return glob.glob('/usr/local/Cellar/gcc*')
+    return glob.glob('/usr/local/Cellar/gcc*')[0]
 
 
 # Platform specific settings
@@ -137,6 +137,8 @@ if operating_system == 'Darwin':
                 if not ('i386' in root):
                     lib_path_list.append(root)
 
+    print(lib_path_list)
+    
     os.environ['FFLAGS'] += ' -mmacosx-version-min=10.7'
     os.environ['CFLAGS'] += ' -mmacosx-version-min=10.7'
     default_link_args = []
