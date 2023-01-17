@@ -28,7 +28,7 @@ jobs:
           export COMPILER_PATH=/c/Miniconda/envs/test/Library/mingw-w64/bin/
           conda activate test
           which python
-          conda install -c msys2 m2w64-gcc m2w64-gcc-fortran m2w64-winpthreads-git m2w64-openblas
+          # conda install -c msys2 m2w64-gcc m2w64-gcc-fortran m2w64-winpthreads-git m2w64-openblas
           conda install libpython
           # which gcc
           # which gfortran
