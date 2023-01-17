@@ -122,7 +122,7 @@ if operating_system == 'Windows':
     os.environ['FC'] = 'gfortran.exe'
     os.environ['AR'] = 'gcc-ar.exe'
     libraries = []
-    default_link_args = ['-l:libgfortran.a', '-l:libquadmath.a', '-l:libm.a']
+    default_link_args = ['-libgfortran.a', '-libquadmath.a', '-libm.a']
     default_compile_args = ['-DMS_WIN64']
 
 os.environ['FFLAGS'] = '-fPIC -fno-range-check ' + os.environ['CLIMT_OPT_FLAGS']
