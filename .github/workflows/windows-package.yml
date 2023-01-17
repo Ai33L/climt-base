@@ -25,7 +25,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - shell: bash -l {0} 
       run: |
-          export COMPILER_PATH=/c/Miniconda/envs/test/Library/mingw-w64/bin/
+          # export COMPILER_PATH=/c/Miniconda/envs/test/Library/mingw-w64/bin/
           conda activate test
           which python
           # conda install -c msys2 m2w64-gcc m2w64-gcc-fortran m2w64-winpthreads-git m2w64-openblas
