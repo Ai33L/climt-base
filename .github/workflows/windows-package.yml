@@ -32,12 +32,12 @@ jobs:
           conda install libpython
           which gcc
           which gfortran
-          cp $COMPILER_PATH/x86_64-w64-mingw32-gcc-ar.exe $COMPILER_PATH/x86_64-w64-mingw32-ar.exe
+          # cp $COMPILER_PATH/x86_64-w64-mingw32-gcc-ar.exe $COMPILER_PATH/x86_64-w64-mingw32-ar.exe
           printf '[build]\r\ncompiler=mingw32\r\n' > $HOME/pydistutils.cfg
           ls $HOME; cat $HOME/pydistutils.cfg          
           python -m pip install -r requirements_dev.txt
           touch libmsvcr140.dll
-          cp /c/Miniconda/envs/test/Library/bin/vcruntime140.dll /c/Miniconda/envs/test/Library/bin/msvcr140.dll
+          # cp /c/Miniconda/envs/test/Library/bin/vcruntime140.dll /c/Miniconda/envs/test/Library/bin/msvcr140.dll
           ls -l
           python setup.py develop
           py.test -v
