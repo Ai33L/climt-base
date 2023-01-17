@@ -130,14 +130,14 @@ os.environ['CFLAGS'] = '-fPIC ' + os.environ['CLIMT_OPT_FLAGS']
 
 if operating_system == 'Darwin':
     gcc_dir = find_homebrew_gcc()
-    print('gcc_dir', gcc_dir)
+    # print('gcc_dir', gcc_dir)
     for root, dirs, files in os.walk(gcc_dir):
         for line in files:
             if re.match('libgfortran.a', line):
                 if not ('i386' in root):
                     lib_path_list.append(root)
 
-    print(lib_path_list)
+    # print(lib_path_list)
 
     os.environ['FFLAGS'] += ' -mmacosx-version-min=10.7'
     os.environ['CFLAGS'] += ' -mmacosx-version-min=10.7'
